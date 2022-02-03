@@ -1,0 +1,24 @@
+{
+  "name": "malina-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -cw",
+    "start": "npx derver --production public",
+    "surge": "cd public && npx surge"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "derver": "^0.5.1",
+    "malinajs": "^0.6.x",
+    "prettier": "^2.5.1",
+    "rollup": "^2.59.0",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.43.4"
+  },
+  "dependencies": {
+    "malinajs-router": "^0.1.6"
+  }
+}

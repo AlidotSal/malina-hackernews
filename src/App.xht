@@ -1,0 +1,104 @@
+<script>
+  import { Route } from 'malinajs-router';
+  import Nav from './components/nav.xht';
+  import Stories from './pages/stories.xht';
+  import User from './pages/user.xht';
+  import Item from './pages/item.xht';
+</script>
+
+<!-- prettier-ignore -->
+<Nav />
+<Route>
+  <Route path="/">
+    <Stories />
+  </Route>
+  <Route path="/news/:page">
+    {#slot params}
+    <Stories page="{params.page}" />
+    {/slot}
+  </Route>
+  <Route path="/newest/:page">
+    {#slot params}
+    <Stories type="newest" page="{params.page}" />
+    {/slot}
+  </Route>
+  <Route path="/show/:page">
+    {#slot params}
+    <Stories type="show" page="{params.page}" />
+    {/slot}
+  </Route>
+  <Route path="/ask/:page">
+    {#slot params}
+    <Stories type="ask" page="{params.page}" />
+    {/slot}
+  </Route>
+  <Route path="/jobs/:page">
+    {#slot params}
+    <Stories type="jobs" page="{params.page}" />
+    {/slot}
+  </Route>
+  <Route path="/users/:user">
+    {#slot params}
+    <User user="{params.user}" />
+    {/slot}
+  </Route>
+  <Route path="/stories/:id">
+    {#slot params}
+    <Item id="{params.id}" />
+    {/slot}
+  </Route>
+</Route>
+
+<style global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  body {
+    overflow-y: scroll;
+    color: #1f1f1f;
+    margin: 0;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell,
+      Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  }
+  ::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(187, 168, 167, 0.85);
+    background-clip: padding-box;
+    border: 0.28rem solid rgba(0, 0, 0, 0);
+    border-radius: 1rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(245, 245, 245, 0.8);
+    border: 0.12rem solid rgb(235, 235, 235);
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    line-height: 1.2;
+  }
+  img {
+    max-width: 100%;
+  }
+  a {
+    color: inherit;
+  }
+  pre {
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+  }
+</style>

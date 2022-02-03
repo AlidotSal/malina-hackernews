@@ -1,0 +1,102 @@
+<script>
+  import Story from '../components/story.xht';
+  export let type = 'news';
+  export let page = 1;
+  let start = 1;
+  let ref;
+  let stories = [];
+  $: nextUrl = `/${type}/${+page + 1}`;
+  $: prevUrl = `/${type}/${page - 1}`;
+  $: page, handleFetch;
+
+  const handleFetch = async () => {
+    const res = await Promise.any([
+      fetch(`https://api.hnpwa.com/v0/${type}/${page}.json`),
+      fetch(`https://api.hackerwebapp.com/${type}?page=${page}`),
+    ]);
+    const s = await res.json();
+    s.forEach((story) => {
+      const words = story.time_ago.split(' ').slice(0, -1);
+      if (words[0] === 'an' || words[0] === 'a') {
+        story.time_ago = `1${words[1][0]}`;
+      } else {
+        story.time_ago = `${words[0]}${words[1][0]}`;
+      }
+    });
+    start = 1 + (page - 1) * 30;
+    window.scroll(0, 0);
+    stories = s;
+  };
+</script>
+
+<main #ref>
+  <b></b>
+  <!-- prettier-ignore -->
+  <div>
+  <h1>{type === 'news' ? 'top' : ''} {type}</h1>
+    <ul>
+      {#each stories as story, i}
+      <li>
+        <Story {story} index={start + i} />
+      </li>
+      {/each}
+    </ul>
+  </div>
+  <b></b>
+</main>
+{#if stories.length > 0}
+<div class="pagination">
+  {#if page > 1}
+  <a href="{prevUrl}" aria-label="Previous Page"> &lt; prev </a>
+  {:else}
+  <span aria-hidden="true"> &lt; prev </span>
+  {/if}
+  <span class="page">page {page}</span>
+  {#if stories.length >= 28}
+  <a href="{nextUrl}" aria-label="Next Page"> more &gt; </a>
+  {:else}
+  <span aria-hidden="true"> more &gt; </span>
+  {/if}
+</div>
+{/if}
+
+<style>
+  main {
+    display: grid;
+    grid-template-columns: 1fr minmax(20rem, 60rem) 1fr;
+    padding: 1rem 2rem;
+  }
+  ul {
+    display: grid;
+  }
+  h1 {
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    font-weight: 400;
+  }
+  h1::first-letter {
+    text-transform: uppercase;
+  }
+  li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-bottom: 2em;
+  }
+  .page {
+    font-weight: 500;
+  }
+  @media (pointer: coarse) and (hover: none), (max-width: 700px) {
+    main {
+      padding: 1rem 2rem 1.5rem 1.5rem;
+    }
+    h1 {
+      margin-top: 1rem;
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,63 @@
+<header>
+  <b></b>
+  <nav>
+    <div class="topics">
+      <a href="/"> top </a>
+      <a href="/newest/1"> new </a>
+      <a href="/show/1"> show </a>
+      <a href="/ask/1"> ask </a>
+      <a href="/jobs/1"> jobs </a>
+    </div>
+    <div class="github">
+      <a href="https://github.com/malinajs/malinajs" target="_blank"> Built with Malina.js </a>
+    </div>
+  </nav>
+  <b></b>
+</header>
+
+<style>
+  header {
+    display: grid;
+    grid-template-columns: 1fr minmax(15rem, 53rem) 1fr;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    padding: 0.75rem 2rem;
+    background: #fff;
+    box-shadow: 0 1px 1px #ff0300;
+    z-index: 10;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .topics {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #4f755b;
+  }
+  a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .github {
+    color: #b95c5a;
+    font-size: 1em;
+  }
+  @media (pointer: coarse) and (hover: none), (max-width: 700px) {
+    header {
+      padding: 0.75rem 1rem;
+    }
+    .topics {
+      gap: 1rem;
+      font-size: 1rem;
+    }
+    .github {
+      font-size: 0.7em;
+    }
+  }
+</style>

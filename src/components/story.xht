@@ -1,0 +1,135 @@
+<script>
+  export let story;
+  export let index;
+</script>
+
+<article>
+  <div class="index">
+    <span>{index}</span>
+  </div>
+  <section>
+    <h2>
+      {#if story.url && !story.url.startsWith('item?id=')}
+      <a href="{story.url}">{story.title}</a>
+      {:else}
+      <a href="/stories/{story.id}">{story.title}</a>
+      {/if}
+    </h2>
+    {#if story.type === 'job'}
+    <div><small>{story.time_ago}</small></div>
+    {:else}
+    <div>
+      {#if story.domain}
+      <small class="domain">({story.domain})</small>
+      {:else}
+      <small class="domain"> </small>
+      {/if}
+      <small>
+        {story.time_ago} - by
+        <a href="/users/{story.user}">{story.user}</a>
+      </small>
+    </div>
+    {/if}
+    <div class="bottom">
+      {#if story.points}
+      <small class="points"> <span> {story.points}</span><span>points</span> </small>
+      {/if} {#if story.type !== 'job'}
+      <a href="/stories/{story.id}">
+        <small class="comments"> <span> {story.comments_count}</span><span>comments</span> </small>
+      </a>
+      {/if}
+    </div>
+  </section>
+</article>
+
+<style>
+  a {
+    text-decoration: none;
+  }
+  article {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1rem;
+  }
+  section {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .index {
+    margin-top: 0.7rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    color: #999;
+  }
+  section div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85em;
+  }
+  section .bottom {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5rem;
+    font-size: 0.85em;
+  }
+  .domain {
+    color: #999;
+  }
+  h2 {
+    font-size: 0.9rem;
+  }
+  h2 a {
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+  small {
+    color: #333;
+  }
+  .bottom small {
+    width: 1rem;
+    display: flex;
+    gap: 0.4rem;
+    align-items: flex-end;
+    font-weight: 700;
+  }
+  small a {
+    font-weight: bold;
+    color: #39a5ed;
+  }
+  .points {
+    color: #39a5ed;
+  }
+  .points img {
+    padding: 0.5px;
+  }
+  .comments {
+    color: #f16826;
+  }
+  @media (pointer: coarse) and (hover: none), (max-width: 700px) {
+    article {
+      gap: 0.5rem;
+    }
+    section {
+      gap: 0.15rem;
+    }
+    h2 a {
+      font-size: 1em;
+      font-weight: 700;
+    }
+    .index {
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: #f1f1f1;
+      background-color: #111;
+      border-radius: 100vw;
+    }
+    section div {
+      justify-content: space-between;
+    }
+  }
+</style>

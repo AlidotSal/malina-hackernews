@@ -1,0 +1,86 @@
+<script>
+  import Comment from '../components/comment.xht';
+  export let id;
+  let data = null;
+
+  fetch(`https://api.hnpwa.com/v0/item/${id}.json`)
+    .then((response) => response.json())
+    .then((json) => {
+      data = json;
+    });
+</script>
+
+<main>
+  {#if data}
+  <article>
+    <a class="title" href="{data.url}">
+      <h1>{data.title}</h1>
+    </a>
+    {#if data.domain}
+    <small>{data.domain}</small>
+    {/if}
+
+    <p>
+      {data.points} points by <a href="/users/{data.user}">{data.user}</a>
+      {data.time_ago}
+    </p>
+
+    {#if data.content} {@html data.content} {/if}
+  </article>
+
+  <div class="comments">
+    <p>{data.comments_count ? data.comments_count + " comments" : "No comments yet."}</p>
+    <ul>
+      {#each data.comments as comment}
+      <li>
+        <Comment {comment} />
+      </li>
+      {/each}
+    </ul>
+  </div>
+  {/if}
+</main>
+
+<style>
+  main {
+    display: grid;
+    gap: 0.8rem;
+    background: #f1f1f1;
+  }
+  h1 {
+    font-weight: 500;
+  }
+  article {
+    display: grid;
+    padding: 1rem 20vw;
+    background: #fff;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  }
+  .title {
+    text-decoration: none;
+  }
+  small {
+    display: block;
+    font-size: 14px;
+  }
+  .comments {
+    padding: 1rem 20vw;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  @media (pointer: coarse) and (hover: none), (max-width: 700px) {
+    main {
+      gap: 1rem;
+    }
+    article {
+      display: grid;
+      gap: 1rem;
+      padding: 0 1em 1em 1em;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.2);
+    }
+    .comments {
+      padding: 1em;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+</style>

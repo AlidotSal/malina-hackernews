@@ -1,0 +1,55 @@
+<script>
+  export let comment;
+  const pluralize = (n) => n + (n === 1 ? ' reply' : ' replies');
+</script>
+
+<fragment:commentUI c="{comment}" />
+
+{#fragment:commentUI c} {* let isOpen = true}
+<article>
+  <div>
+    <span><a href="/users/{c.user}">{c.user}</a> {c.time_ago}</span>
+  </div>
+
+  <div class="body">{@html c.content}</div>
+
+  {#if c.comments.length > 0}
+  <div class="toggle" class:closed="{!isOpen}">
+    <!-- prettier-ignore -->
+    <a @click={isOpen = !isOpen}>
+      {isOpen ? "[-]" : "[+] " + pluralize(c.comments.length) + " collapsed"}
+    </a>
+  </div>
+  {#if isOpen}
+  <ul>
+    {#each c.comments as child}
+    <li class="child"><fragment:commentUI c="{child}" /></li>
+    {/each}
+  </ul>
+  {/if} {/if}
+</article>
+{/fragment}
+
+<style>
+  article {
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  article .child {
+    padding: 0 0 0 2em;
+  }
+  .body {
+    overflow-wrap: anywhere;
+  }
+  a {
+    cursor: pointer;
+  }
+  .closed {
+    background-color: rgba(243, 67, 0, 0.1);
+  }
+  @media (pointer: coarse) and (hover: none), (max-width: 700px) {
+    article .child {
+      padding: 0 0 0 1em;
+    }
+  }
+</style>
