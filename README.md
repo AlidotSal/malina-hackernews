@@ -1,4 +1,4 @@
-# Hacker News clone built with Malina.js and and [malinajs-router](https://github.com/AlexxNB/malinajs-router).
+## Hacker News clone built with Malina.js and and [malinajs-router](https://github.com/AlexxNB/malinajs-router).
 
 <p align="center">
   <a href="https://malina-hackernews.pages.dev/" target="_blank">
