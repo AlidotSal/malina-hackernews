@@ -3,6 +3,6 @@
   export let param;
 </script>
 
-{#await component.then ? component : component()} Loading component... {:then Cmp}
+{#await component.then ? component : component()} {:then Cmp}
 <component:Cmp.default {param} />
 {/await}
