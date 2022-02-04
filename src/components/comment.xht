@@ -6,7 +6,7 @@
 <fragment:commentUI c="{comment}" />
 
 {#fragment:commentUI c} {* let isOpen = true}
-<article>
+<li class="child">
   <span><a href="/users/{c.user}">{c.user}</a> {c.time_ago}</span>
 
   <div class="body">{@html c.content}</div>
@@ -21,20 +21,20 @@
   {#if isOpen}
   <ul>
     {#each c.comments as child}
-    <li class="child"><fragment:commentUI c="{child}" /></li>
+    <fragment:commentUI c="{child}" />
     {/each}
   </ul>
   {/if} {/if}
-</article>
+</li>
 {/fragment}
 
 <style>
-  article {
+  .child {
     font-size: 0.9rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
   }
-  article .child {
-    padding: 0 0 0 2em;
+  ul {
+    padding: 0 0 0 1.2em;
   }
   .body {
     overflow-wrap: anywhere;

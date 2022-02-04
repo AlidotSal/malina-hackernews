@@ -32,9 +32,7 @@
     <p>{data.comments_count ? data.comments_count + " comments" : "No comments yet."}</p>
     <ul>
       {#each data.comments as comment}
-      <li>
-        <Comment {comment} />
-      </li>
+      <Comment {comment} />
       {/each}
     </ul>
   </div>
