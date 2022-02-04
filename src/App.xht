@@ -2,8 +2,7 @@
   import { Route } from 'malinajs-router';
   import Nav from './components/nav.xht';
   import Stories from './pages/stories.xht';
-  import User from './pages/user.xht';
-  import Item from './pages/item.xht';
+  import Lazy from './components/lazy.xht';
 </script>
 
 <!-- prettier-ignore -->
@@ -38,14 +37,10 @@
     {/slot}
   </Route>
   <Route path="/users/:user">
-    {#slot params}
-    <User user="{params.user}" />
-    {/slot}
+    {#slot params} <Lazy component={import('./pages/user.xht')} param="{params.user}"/> {/slot}
   </Route>
   <Route path="/stories/:id">
-    {#slot params}
-    <Item id="{params.id}" />
-    {/slot}
+    {#slot params} <Lazy component={import('./pages/item.xht')} param="{params.id}"/> {/slot}
   </Route>
 </Route>
 
