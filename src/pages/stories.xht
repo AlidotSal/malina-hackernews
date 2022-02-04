@@ -18,6 +18,8 @@
       const words = story.time_ago.split(' ').slice(0, -1);
       if (words[0] === 'an' || words[0] === 'a') {
         story.time_ago = `1${words[1][0]}`;
+      } else {
+        story.time_ago = `${words[0]}${words[1][0]}`;
       }
     });
     start = 1 + (page - 1) * 30;

@@ -1,8 +1,8 @@
 <script>
-  export let user;
+  export let param;
   let data = null;
 
-  fetch(`https://api.hnpwa.com/v0/user/${user}.json`)
+  fetch(`https://api.hnpwa.com/v0/user/${param}.json`)
     .then((res) => res.json())
     .then((json) => (data = json));
 </script>
