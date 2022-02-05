@@ -12,12 +12,10 @@
   <div class="body">{@html c.content}</div>
 
   {#if c.comments.length > 0}
-  <div class="toggle" class:closed="{!isOpen}">
-    <!-- prettier-ignore -->
-    <a @click={isOpen = !isOpen}>
+  <!-- prettier-ignore -->
+  <a class:closed="{!isOpen}" @click={isOpen = !isOpen}>
       {isOpen ? "[-]" : "[+] " + pluralize(c.comments.length) + " collapsed"}
     </a>
-  </div>
   {#if isOpen}
   <ul>
     {#each c.comments as child}
