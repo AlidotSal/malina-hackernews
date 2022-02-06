@@ -3,7 +3,10 @@
   export let param;
   let data = null;
 
-  fetch(`https://api.hnpwa.com/v0/item/${param}.json`)
+  Promise.any([
+    fetch(`https://api.hackerwebapp.com/item/${param}`),
+    fetch(`https://api.hnpwa.com/v0/item/${param}.json`),
+  ])
     .then((response) => response.json())
     .then((json) => {
       data = json;
