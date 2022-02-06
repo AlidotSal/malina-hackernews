@@ -1,11 +1,12 @@
 <script>
   export let comment;
+  if (!$context.openedState) $context.openedState = new Map();
   const pluralize = (n) => n + (n === 1 ? ' reply' : ' replies');
 </script>
 
 <fragment:commentUI c="{comment}" />
 
-{#fragment:commentUI c} {* let isOpen = true}
+{#fragment:commentUI c, id={}} {* let isOpen = $context.openedState.get(id)}
 <li class="child">
   <span><a href="/users/{c.user}">{c.user}</a> {c.time_ago}</span>
 
@@ -13,13 +14,13 @@
 
   {#if c.comments.length > 0}
   <!-- prettier-ignore -->
-  <a class:closed="{!isOpen}" @click={isOpen = !isOpen}>
+  <a class:closed="{!isOpen}" @click={$context.openedState.set(id,(isOpen = !isOpen))}>
       {isOpen ? "[-]" : "[+] " + pluralize(c.comments.length) + " collapsed"}
     </a>
   {#if isOpen}
   <ul>
     {#each c.comments as child}
-    <fragment:commentUI c="{child}" />
+    <fragment:commentUI c="{child}" id="{c}" />
     {/each}
   </ul>
   {/if} {/if}
