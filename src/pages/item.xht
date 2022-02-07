@@ -2,6 +2,7 @@
   import Comment from '../components/comment.xht';
   export let param;
   let data = null;
+  $context.openedState = new Map();
 
   Promise.any([
     fetch(`https://api.hackerwebapp.com/item/${param}`),
