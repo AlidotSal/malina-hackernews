@@ -7,7 +7,6 @@
   Promise.any([
     fetch(`https://api.hnpwa.com/v0/item/${param}.json`),
     fetch(`https://node-hnapi.herokuapp.com/item/${param}`),
-    fetch(`https://api.hackerwebapp.com/item/${param}`),
   ])
     .then((response) => response.json())
     .then((json) => {
