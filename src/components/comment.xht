@@ -8,13 +8,13 @@
 <!-- prettier-ignore -->
 {#if c.content !== "" && c.content !== "[deleted]"}
 <li class="child">
-  <span><a href="/users/{c.user}">{c.user}</a> {c.time_ago}</span>
+  <span><a class="user" href="/users/{c.user}">{c.user}</a> - {c.time_ago}</span>
 
   <div class="body">{@html c.content}</div>
 
   {#if c.comments.length > 0}
   <!-- prettier-ignore -->
-  <a class:closed="{!isOpen}" @click={$context.openedState.set(c.id,(isOpen = !isOpen))}>
+  <a class="replies" class:closed="{!isOpen}" @click={$context.openedState.set(c.id,(isOpen = !isOpen))}>
       {isOpen ? "[-] Hide replies" : "[+] Show replies"}
     </a>
   {#if isOpen}
@@ -29,7 +29,7 @@
 
 <style>
   .child {
-    font-size: 0.9rem;
+    font-size: 0.85em;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
   }
   ul {
@@ -40,6 +40,14 @@
   }
   a {
     cursor: pointer;
+  }
+  .user {
+    font-weight: 700;
+    color: #39a5ed;
+  }
+  .replies {
+    display: inline-block;
+    margin-bottom: 0.5em;
   }
   .closed {
     background-color: rgba(243, 67, 0, 0.1);
