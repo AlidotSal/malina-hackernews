@@ -1,6 +1,5 @@
 <script>
   export let comment;
-  const pluralize = (n) => n + (n === 1 ? ' reply' : ' replies');
 </script>
 
 <fragment:commentUI c="{comment}" />
@@ -16,11 +15,11 @@
   {#if c.comments.length > 0}
   <!-- prettier-ignore -->
   <a class:closed="{!isOpen}" @click={$context.openedState.set(c.id,(isOpen = !isOpen))}>
-      {isOpen ? "[-]" : "[+] " + pluralize(c.comments.length) + " collapsed"}
+      {isOpen ? "[-] Hide replies" : "[+] Show replies"}
     </a>
   {#if isOpen}
   <ul>
-    {#each c.comments as child}
+    {#each c.comments as child, index (child.id)}
     <fragment:commentUI c="{child}" />
     {/each}
   </ul>
