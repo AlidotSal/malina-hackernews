@@ -1,35 +1,37 @@
 <script>
-  export let param;
-  let data = null;
-
-  fetch(`https://api.hnpwa.com/v0/user/${param}.json`)
-    .then((res) => res.json())
-    .then((json) => (data = json));
+  export let data;
 </script>
 
 <main>
-  {#if data}
-  <h1>User: {data.id}</h1>
+  <b></b>
   <div>
-    <p>...joined<strong> {data.created}</strong> and has <strong> {data.karma}</strong> karma.</p>
-    <p class="links">
-      <a href="https://news.ycombinator.com/submitted?id={data.id}">submissions</a> /
-      <a href="https://news.ycombinator.com/threads?id={data.id}">comments</a> /
-      <a href="https://news.ycombinator.com/favorites?id={data.id}">favourites</a>
-    </p>
+    {#if data}
+    <h1>User: {data.id}</h1>
+    <div>
+      <p>...joined<strong> {data.created}</strong> and has <strong> {data.karma}</strong> karma.</p>
+      <p class="links">
+        <a href="https://news.ycombinator.com/submitted?id={data.id}">submissions</a> /
+        <a href="https://news.ycombinator.com/threads?id={data.id}">comments</a> /
+        <a href="https://news.ycombinator.com/favorites?id={data.id}">favourites</a>
+      </p>
+    </div>
+    {#if data.about}
+    <div class="about">{@html data.about}</div>
+    {/if} {/if} {#if data?.error}
+    <h1>User not found.</h1>
+    {/if}
   </div>
-  {#if data.about}
-  <div class="about">{@html data.about}</div>
-  {/if} {/if} {#if data?.error}
-  <h1>User not found.</h1>
-  {/if}
+  <b></b>
 </main>
 
 <style>
   main {
-    padding: 1em 18vw;
+    display: grid;
+    grid-template-columns: 1fr minmax(20rem, 65rem) 1fr;
+    padding: 1rem 4rem;
   }
   h1 {
+    margin-top: 2.4rem;
     margin-bottom: 0.5em;
     font-weight: 400;
     line-height: 1.2;

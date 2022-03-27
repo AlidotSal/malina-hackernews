@@ -8,39 +8,25 @@
 <!-- prettier-ignore -->
 <Nav />
 <Route>
-  <Route path="/">
-    <Stories />
-  </Route>
-  <Route path="/news/:page">
-    {#slot params}
-    <Stories page="{params.page}" />
-    {/slot}
-  </Route>
+  <Route path="/"> <Stories /> </Route>
+  <Route path="/news/:page"> {#slot params} <Stories page="{params.page}" /> {/slot} </Route>
   <Route path="/newest/:page">
-    {#slot params}
-    <Stories type="newest" page="{params.page}" />
-    {/slot}
+    {#slot params} <Stories type="newest" page="{params.page}" /> {/slot}
   </Route>
   <Route path="/show/:page">
-    {#slot params}
-    <Stories type="show" page="{params.page}" />
-    {/slot}
+    {#slot params} <Stories type="show" page="{params.page}" />{/slot}
   </Route>
   <Route path="/ask/:page">
-    {#slot params}
-    <Stories type="ask" page="{params.page}" />
-    {/slot}
+    {#slot params} <Stories type="ask" page="{params.page}" />{/slot}
   </Route>
   <Route path="/jobs/:page">
-    {#slot params}
-    <Stories type="jobs" page="{params.page}" />
-    {/slot}
+    {#slot params} <Stories type="jobs" page="{params.page}" />{/slot}
   </Route>
   <Route path="/users/:user">
-    {#slot params} <Lazy component={import('./pages/user.xht')} param="{params.user}"/> {/slot}
+    {#slot params} <Lazy component={import('./pages/user.xht')} user="{params.user}" /> {/slot}
   </Route>
   <Route path="/stories/:id">
-    {#slot params} <Lazy component={import('./pages/item.xht')} param="{params.id}"/> {/slot}
+    {#slot params} <Lazy component={import('./pages/item.xht')} id="{params.id}"/> {/slot}
   </Route>
 </Route>
 
@@ -97,6 +83,7 @@
     white-space: pre-wrap;
   }
   .body p {
-    line-height: 1.5;
+    margin: 0.75em 0;
+    line-height: 1.4;
   }
 </style>
