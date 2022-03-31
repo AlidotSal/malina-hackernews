@@ -20,17 +20,15 @@
     display: grid;
     grid-template-columns: 1fr minmax(20rem, 64rem) 1fr;
     align-items: center;
-    position: sticky;
-    top: 0;
-    padding: 0.8rem 2rem;
-    background: #fff;
-    box-shadow: 0 1px 1px #ff0300;
+    padding: 1rem 2rem;
+    background: #fafafa;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 0.1);
     z-index: 10;
   }
   nav {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     gap: 1rem;
   }
   .topics {
@@ -38,19 +36,19 @@
     gap: 2rem;
     align-items: center;
     font-size: 1.1rem;
-    color: #4f755b;
+    color: #0b6e12;
   }
   a {
     text-decoration: none;
     font-weight: 500;
   }
   .github {
-    color: #b95c5a;
+    color: #f31706;
     font-size: 1em;
   }
   @media (pointer: coarse) and (hover: none), (max-width: 700px) {
     header {
-      padding: 1rem;
+      padding: 1.2rem 1rem;
     }
     .topics {
       gap: 1rem;
