@@ -6,18 +6,11 @@
   export let user;
   let data = null;
 
-  if (id) {
-    Promise.any([
-      fetch(`https://api.hnpwa.com/v0/item/${id}.json`),
-      fetch(`https://node-hnapi.herokuapp.com/item/${id}`),
-    ])
+  id ? fetchData('item', id) : fetchData('user', user);
+
+  function fetchData(type, id) {
+    fetch(`https://api.hnpwa.com/v0/${type}/${id}.json`)
       .then((response) => response.json())
-      .then((json) => {
-        data = json;
-      });
-  } else {
-    fetch(`https://api.hnpwa.com/v0/user/${user}.json`)
-      .then((res) => res.json())
       .then((json) => {
         data = json;
       });
