@@ -14,9 +14,9 @@
 
   {#if c.comments.length > 0}
   <!-- prettier-ignore -->
-  <a class="replies" class:closed="{!isOpen}" @click={$context.openedState.set(c.id,(isOpen = !isOpen))}>
+  <button type="button" class="replies" class:closed="{!isOpen}" @click={$context.openedState.set(c.id,(isOpen = !isOpen))}>
       {isOpen ? "[-] Hide replies" : "[+] Show replies"}
-    </a>
+    </button>
   {#if isOpen}
   <ul>
     {#each c.comments as child, index (child.id)}
@@ -39,16 +39,18 @@
   .body {
     overflow-wrap: anywhere;
   }
-  a {
-    cursor: pointer;
-  }
   .user {
+    cursor: pointer;
     font-weight: 700;
     color: #39a5ed;
   }
   .replies {
-    display: inline-block;
-    padding: 0.15em 0.3em 0.3em;
+    all: unset;
+    cursor: pointer;
+    padding: 0.3em;
+    color: rgb(0 0 0 / .5);
+    -webkit-tap-highlight-color: transparent;
+    
   }
   .closed {
     color: rgb(243 0 0);
