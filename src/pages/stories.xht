@@ -1,12 +1,13 @@
 <script>
   import Story from '../components/story.xht';
-  export let type = 'news';
-  export let page = 1;
+  export let url;
   let start = 1;
   let stories = [];
+  $: type = url.split('/')[1] || 'news';
+  $: page = url.split('/')[2] || 1;
   $: nextUrl = `/${type}/${+page + 1}`;
   $: prevUrl = `/${type}/${page - 1}`;
-  $: page, handleFetch;
+  $: type, page, handleFetch;
 
   const handleFetch = async () => {
     const res = await Promise.any([
