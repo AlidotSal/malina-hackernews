@@ -1,10 +1,11 @@
 <script>
   export let comment;
+  $context.openedState = new Map();
 </script>
 
 <fragment:commentUI c="{comment}" />
 
-{#fragment:commentUI c} {* let isOpen = $context.openedState.get(c.id)}
+{#fragment:commentUI c} {* let isOpen = true}
 <!-- prettier-ignore -->
 {#if c.content !== "" && c.content !== "[deleted]"}
 <li class="child">
@@ -29,7 +30,7 @@
 
 <style>
   .child {
-    padding: 0.5em 0;
+    padding: 0.5em 0 0 0;
     font-size: 0.85rem;
     border-top: 1px solid rgb(0 0 0 / 0.2);
   }
@@ -47,10 +48,8 @@
   .replies {
     all: unset;
     cursor: pointer;
-    padding: 0.3em;
-    color: rgb(0 0 0 / .5);
-    -webkit-tap-highlight-color: transparent;
-    
+    padding: 0.3em 0 0.7em 0;
+    color: rgb(0 0 0 / 0.5);
   }
   .closed {
     color: rgb(243 0 0);
