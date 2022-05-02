@@ -5,7 +5,7 @@
 
 <fragment:commentUI c="{comment}" />
 
-{#fragment:commentUI c} {* let isOpen = true}
+{#fragment:commentUI c} {* let isOpen = $context.openedState.get(c.id)}
 <!-- prettier-ignore -->
 {#if c.content !== "" && c.content !== "[deleted]"}
 <li class="child">
