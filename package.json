@@ -9,14 +9,14 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "derver": "^0.5.3",
-    "malinajs": "^0.6.56",
-    "prettier": "^2.6.2",
-    "rollup": "^2.70.2",
-    "rollup-plugin-css-only": "^3.1.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "sass": "^1.50.1"
+    "malinajs": "^0.7.17",
+    "prettier": "^3.1.1",
+    "rollup": "^4.9.0",
+    "rollup-plugin-css-only": "^4.5.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "sass": "^1.69.5"
   },
   "dependencies": {
     "malinajs-router": "^0.1.9"

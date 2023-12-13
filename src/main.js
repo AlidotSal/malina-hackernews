@@ -1,2 +1,3 @@
-import App from './App.xht';
-App(document.body);
+import { mount } from "malinajs";
+import App from "./App.xht";
+mount(document.body, App);
